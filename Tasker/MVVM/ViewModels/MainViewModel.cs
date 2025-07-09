@@ -54,7 +54,7 @@ namespace Tasker.MVVM.ViewModels
                   new MyTask
                 {
                     TaskName = "Upload BLALALALA",
-                    Completed = false,
+                    Completed = true,
                     CategoryId = 2
                 },
                  new MyTask
@@ -77,8 +77,8 @@ namespace Tasker.MVVM.ViewModels
                             where t.CategoryId == c.Id
                             select t;
 
-                var completed = from t in Tasks
-                                where t.Completed == true
+                var completed = from t in tasks
+                                where t.Completed
                                 select t;
 
                 var notCompleted = from t in Tasks
@@ -86,7 +86,9 @@ namespace Tasker.MVVM.ViewModels
                                    select t;
 
                 c.PendingTasks = notCompleted.Count();
-                c.Percantage = (float)completed.Count() / (float)tasks.Count();
+                c.Percentage = (float)completed.Count() / (float)tasks.Count();
+               // System.Diagnostics.Debug.WriteLine($"Category: {c.CategoryName} → Percentage: {c.Percentage}");
+
             }
             foreach (var t in Tasks)
             {
