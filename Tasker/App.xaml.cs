@@ -11,7 +11,7 @@ namespace Tasker
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new NewTasksView());
+            return new Window(new NavigationPage(new MainView()));
         }
     }
 }
