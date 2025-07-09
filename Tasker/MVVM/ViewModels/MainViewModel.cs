@@ -1,4 +1,5 @@
 ﻿
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using Tasker.MVVM.Models;
 
 namespace Tasker.MVVM.ViewModels
 {
+    [AddINotifyPropertyChangedInterface]
     public class MainViewModel
     {
         public ObservableCollection<Category> Categories { get; set; }
@@ -63,7 +65,24 @@ namespace Tasker.MVVM.ViewModels
                     Completed = false,
                     CategoryId = 3
                 },
-
+                 new MyTask
+                {
+                    TaskName = "Upload BLA",
+                    Completed = false,
+                    CategoryId = 1
+                },
+                  new MyTask
+                {
+                    TaskName = "Upload BLALALALA",
+                    Completed = true,
+                    CategoryId = 2
+                },
+                 new MyTask
+                {
+                    TaskName = "Upload BLALALALA",
+                    Completed = false,
+                    CategoryId = 3
+                },
         };
 
             UpdateData();
