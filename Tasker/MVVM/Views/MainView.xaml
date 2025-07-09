@@ -12,7 +12,8 @@
         <Label Text="My Tasks" StyleClass="DarkBlue, Header"/>
         <Grid Grid.Row="1" RowDefinitions=".2*,.8*" >
             <Label StyleClass="LightBlue, SubHeader" Text="CATEGORIES" />
-            <CollectionView Grid.Row="1" ItemsSource="{Binding Categories}">
+            <CollectionView Grid.Row="1" ItemsSource="{Binding Categories}"
+                            ItemsUpdatingScrollMode="KeepLastItemInView">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="5" Orientation="Horizontal"/>
                 </CollectionView.ItemsLayout>

@@ -3,6 +3,7 @@ using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,12 @@ namespace Tasker.MVVM.ViewModels
         public MainViewModel()
         {
             FillData();
+            Tasks.CollectionChanged += Tasks_CollectionChanged;
+        }
+
+        private void Tasks_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+           UpdateData();
         }
 
         private void FillData()
@@ -28,19 +35,19 @@ namespace Tasker.MVVM.ViewModels
                 new Category
                 {
                     Id = 1,
-                    CategoryName = "Test BLA BLA BLA",
+                    CategoryName = "Online",
                     Color= "#CF14DF"
                 },
                   new Category
                 {
                     Id = 2,
-                    CategoryName = "Test2 PLUPLUPLUP",
+                    CategoryName = "Einkaufen",
                     Color= "#df6f14"
                 },
                     new Category
                 {
                     Id = 3,
-                    CategoryName = "Test3DINGDONGDINGDONG",
+                    CategoryName = "Weltherrschaft",
                     Color= "#14df80"
                 },
             };
@@ -49,37 +56,43 @@ namespace Tasker.MVVM.ViewModels
             {
                 new MyTask
                 {
-                    TaskName = "Upload BLA",
+                    TaskName = "Upload YT",
                     Completed = false,
                     CategoryId = 1
                 },
                   new MyTask
                 {
-                    TaskName = "Upload BLALALALA",
-                    Completed = true,
-                    CategoryId = 2
-                },
-                 new MyTask
-                {
-                    TaskName = "Upload BLALALALA",
-                    Completed = false,
-                    CategoryId = 3
-                },
-                 new MyTask
-                {
-                    TaskName = "Upload BLA",
+                    TaskName = "Upload TikTok",
                     Completed = false,
                     CategoryId = 1
                 },
+                 new MyTask
+                {
+                    TaskName = "Download CornHub",
+                    Completed = false,
+                    CategoryId = 1
+                },
+                 new MyTask
+                {
+                    TaskName = "Banana",
+                    Completed = false,
+                    CategoryId = 2
+                },
                   new MyTask
                 {
-                    TaskName = "Upload BLALALALA",
-                    Completed = true,
+                    TaskName = "Fisch",
+                    Completed = false,
                     CategoryId = 2
                 },
                  new MyTask
                 {
-                    TaskName = "Upload BLALALALA",
+                    TaskName = "Wurst",
+                    Completed = false,
+                    CategoryId = 2
+                },
+                  new MyTask
+                {
+                    TaskName = "Trump wählen",
                     Completed = false,
                     CategoryId = 3
                 },
@@ -100,7 +113,7 @@ namespace Tasker.MVVM.ViewModels
                                 where t.Completed
                                 select t;
 
-                var notCompleted = from t in Tasks
+                var notCompleted = from t in tasks
                                    where t.Completed == false
                                    select t;
 
